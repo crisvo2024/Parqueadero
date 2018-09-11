@@ -1,23 +1,14 @@
 package unal.poo.practica;
-
-import becker.robots.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /** 
- * Practica de los conceptos de Programacion Estructurada
- * @author Fabian Andres Giraldo */
-public class Main
-{    
-       //Declaracion de Variables -- Forma temporal - No es buena practica tener
-       //variables estaticas
-              
+ * Ejercicio de parqueadero con Karel
+ * @author Cristian Vargas, Diego Lopez, Jose Suarez  */
+public class Main{        
 	public static void main (String[] args){
- 
             parqueadero P=new parqueadero();
-            for(int i=1;i<10;i++)P.ingreso(new Carro("hol"+Integer.toString(i)));
-            parqueadero.sacar("hol2",2);
-            System.out.println("hol"+Integer.toString(2));
+            for(int i=1;i<15;i++)P.ingreso(new Carro("hol"+Integer.toString(i)));
+            P.sacar("hol1",1);
+            P.sacar("hol8",2);
+            P.sacar("hol12",3);
+            System.out.println("Los ingresos del dia son: "+P.getGanancias());
 	}
 }
