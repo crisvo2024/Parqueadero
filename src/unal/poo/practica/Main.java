@@ -1,7 +1,8 @@
 package unal.poo.practica;
 /** 
  * Ejercicio de parqueadero con Karel
- * @author Cristian Vargas, Diego Lopez, Jose Suarez  */
+ * @author Cristian Vargas, Diego Lopez, Jose Suarez  
+ */
 public class Main{        
 	public static void main (String[] args){
             parqueadero P=new parqueadero();
