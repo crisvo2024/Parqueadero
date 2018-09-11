@@ -6,8 +6,6 @@
 package unal.poo.practica;
 
 import becker.robots.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -84,7 +82,7 @@ public class parqueadero {
                 t=8;
             }
             else if(s2.getLibres()>=s1.getLibres()&&s2.getLibres()>=s3.getLibres()&&s2.getLibres()!=0){
-                carro.setPosicion(5-s1.getLibres());
+                carro.setPosicion(5-s2.getLibres());
                 Carro[] nuevo=s2.getCarros();
                 nuevo[5-s2.getLibres()]=carro;
                 s2.setCarros(nuevo);
@@ -92,7 +90,7 @@ public class parqueadero {
                 
             }
             else if(s3.getLibres()>s1.getLibres()&&s3.getLibres()>s2.getLibres()&&s3.getLibres()!=0){
-                carro.setPosicion(5-s1.getLibres());
+                carro.setPosicion(5-s3.getLibres());
                 Carro[] nuevo=s3.getCarros();
                 nuevo[5-s3.getLibres()]=carro;
                 s3.setCarros(nuevo);
@@ -176,7 +174,6 @@ public class parqueadero {
             ganancias+=(minutos+Math.round(diferencia/60))*precio;    
             for(int i=zona.getLibres()+1;i<5-carro.getPosicion();i++){
                 move(10-zona.getColumna());
-                System.out.println(zona.getColumna());
                 girar(3);
                 move(i);
                 girar(1);
@@ -203,7 +200,7 @@ public class parqueadero {
             
             move(10-zona.getColumna());
             girar(3);
-            move(carro.getPosicion());
+            move(5-carro.getPosicion());
             girar(1);
             move(1);
             zona.getCarros()[carro.getPosicion()]=null;
@@ -211,14 +208,14 @@ public class parqueadero {
             girar(2);
             move(1);
             girar(3);
-            move(carro.getPosicion());
+            move(5-carro.getPosicion());
             girar(1);
             move(10-zona.getColumna());
             girar(2);
             
             Carro nuevo[]=zona.getCarros();
             
-            for(int i=5-carro.getPosicion();i>zona.getLibres();i--){
+            for(int i=5-carro.getPosicion();i>zona.getLibres()+1;i--){
                 move(temp.getLibres());
                 girar(3);
                 move(1);
@@ -226,13 +223,13 @@ public class parqueadero {
                 girar(2);
                 move(1);
                 girar(3);
-                move(10-zona.getColumna());
+                move(temp.getColumna()-zona.getColumna()+(4-temp.getLibres()));
                 girar(3);
                 move(i);
                 girar(1);
                 move(1);
                 Thing vehiculo=new Thing(parqueadero.ciudad,parqueadero.robot.getStreet(),parqueadero.robot.getAvenue());
-                vehiculo.getIcon().setLabel(zona.getCarros()[carro.getPosicion()+i].getPlaca());
+                vehiculo.getIcon().setLabel(zona.getCarros()[5-i+1].getPlaca());
                 girar(2);
                 move(1);
                 girar(3);
@@ -241,7 +238,7 @@ public class parqueadero {
                 move(10-zona.getColumna());
                 girar(2);
                 temp.setLibres(temp.getLibres()+1);
-                if(i>0)nuevo[i]=zona.getCarros()[i-1];
+                if(i>0)nuevo[5-i]=zona.getCarros()[5-i+1];
                 else;
             }
                         
