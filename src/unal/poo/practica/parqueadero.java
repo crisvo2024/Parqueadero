@@ -87,14 +87,21 @@ public class parqueadero {
         entrada=new Date();
         carro.setEntrada(entrada);
         seccion zona;
-        if(s1.getLibres()>=s2.getLibres()&&s1.getLibres()>=s3.getLibres()&&s1.getLibres()!=0)zona=s1;
-        else if(s2.getLibres()>=s1.getLibres()&&s2.getLibres()>=s3.getLibres()&&s2.getLibres()!=0)zona=s2;
-            else if(s3.getLibres()>s1.getLibres()&&s3.getLibres()>s2.getLibres()&&s3.getLibres()!=0)zona=s3; 
-            else{
-                System.out.println("No hay parqueaderos libres vulva mas tarde");
-                return;
-            } 
-        
+        if(s1.getLibres()>=s2.getLibres()&&s1.getLibres()>=s3.getLibres()&&s1.getLibres()!=0){
+            zona=s1;
+        }else {
+            if(s2.getLibres()>=s1.getLibres()&&s2.getLibres()>=s3.getLibres()&&s2.getLibres()!=0){
+                zona=s2;
+            }else{
+                if(s3.getLibres()>s1.getLibres()&&s3.getLibres()>s2.getLibres()&&s3.getLibres()!=0){
+                    zona=s3;
+                }else{
+                    System.out.println("No hay parqueaderos libres vulva mas tarde");
+                    return;
+                }
+            }     
+        }
+
         carro.setPosicion(5-zona.getLibres());
         Carro[] nuevo=zona.getCarros();
         nuevo[5-zona.getLibres()]=carro;
@@ -114,7 +121,7 @@ public class parqueadero {
         zona.setLibres(zona.getLibres()-1);
         System.out.println("carro "+carro.getPlaca()+" parqueado en la zona 1");
         girar(1);
-        move(t);
+        move(10-zona.getColumna());
         girar(2);
     }
     /**
