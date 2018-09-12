@@ -1,17 +1,19 @@
 package unal.poo.practica;
-
 /**
  *
  * @author Cristian Vargas, Diego Lopez, Jose Suarez
  */
 public class seccion {
     private final int columna;
-    private int id, libres;
+    private int libres;
     private Carro[] carros;
-
-    public seccion(int columna, int id, int libres) {
+    /**
+     * Constructor para una seccion
+     * @param columna define la columna en la que esta unbicada la seccion
+     * @param libres define la cantidad de espacios libres en la seccion
+     */
+    public seccion(int columna, int libres) {
         this.columna = columna;
-        this.id = id;
         this.libres = libres;
         this.carros = new Carro[5];
     }
