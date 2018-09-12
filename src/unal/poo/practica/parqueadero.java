@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package unal.poo.practica;
 
 import becker.robots.*;
 import java.util.Date;
-
 /**
  * @author: Cristian Vargas, Diego Lopez, Jose Suarez 
  */
@@ -16,10 +10,10 @@ public class parqueadero {
     private final Robot robot;
     private int t,ganancias;
     //se crean las secciones con la columna y el id
-    private final seccion s1=new seccion(2,1,5);
-    private final seccion s2=new seccion(4,2,5);
-    private final seccion s3=new seccion(6,3,5);
-    private final seccion temp=new seccion(7,4,4);
+    private final seccion s1=new seccion(2,5);
+    private final seccion s2=new seccion(4,5);
+    private final seccion s3=new seccion(6,5);
+    private final seccion temp=new seccion(7,4);
     private Date entrada;
     private static final int PRECIO=10;
     
@@ -180,13 +174,7 @@ public class parqueadero {
             System.out.println("El carro no se encuentra en el parqueadero, revice la zona y la placa ingresadas");
             return;
         }
-        /*
-            ubc es la posicion del carro en el arreglo
-            prim es la uicacion del ultimo carro en entrar+
-        */
-
-
-
+        
         float diferencia=(now.getTime()-carro.getEntrada().getTime())/1000;
         int minutos=(int)(diferencia/60);
         diferencia=diferencia-(minutos*60);
@@ -217,7 +205,6 @@ public class parqueadero {
             temp.setLibres(temp.getLibres()-1);
             move(temp.getLibres());
             girar(2);
-
         }
 
         move(10-zona.getColumna());
@@ -263,7 +250,6 @@ public class parqueadero {
             if(i>0)nuevo[5-i]=zona.getCarros()[5-i+1];
             else;
         }
-
     }
     /**
      * Metodo que retorna las ganancias actuales del parqueadero
