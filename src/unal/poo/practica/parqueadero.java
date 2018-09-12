@@ -10,10 +10,10 @@ public class parqueadero {
     private final Robot robot;
     private int t,ganancias;
     //se crean las secciones con la columna y el id
-    private final seccion s1=new seccion(2,5);
-    private final seccion s2=new seccion(4,5);
-    private final seccion s3=new seccion(6,5);
-    private final seccion temp=new seccion(7,4);
+    private final seccion s1=new seccion(2,1,5);
+    private final seccion s2=new seccion(4,2,5);
+    private final seccion s3=new seccion(6,3,5);
+    private final seccion temp=new seccion(7,4,4);
     private Date entrada;
     private static final int PRECIO=10;
     
@@ -119,7 +119,7 @@ public class parqueadero {
         girar(3);
         move(zona.getLibres());
         zona.setLibres(zona.getLibres()-1);
-        System.out.println("carro "+carro.getPlaca()+" parqueado en la zona 1");
+        System.out.println("carro "+carro.getPlaca()+" parqueado en la zona "+zona.getId());
         girar(1);
         move(10-zona.getColumna());
         girar(2);

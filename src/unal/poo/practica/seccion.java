@@ -6,15 +6,17 @@ package unal.poo.practica;
 public class seccion {
     private final int columna;
     private int libres;
+    private int id;
     private Carro[] carros;
     /**
      * Constructor para una seccion
      * @param columna define la columna en la que esta unbicada la seccion
      * @param libres define la cantidad de espacios libres en la seccion
      */
-    public seccion(int columna, int libres) {
+    public seccion(int columna, int id, int libres) {
         this.columna = columna;
         this.libres = libres;
+        this.id = id;
         this.carros = new Carro[5];
     }
 
@@ -36,6 +38,10 @@ public class seccion {
 
     public void setCarros(Carro[] carros) {
         this.carros = carros;
+    }
+
+    public int getId() {
+        return id;
     }
     
 }
