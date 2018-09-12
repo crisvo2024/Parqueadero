@@ -86,62 +86,36 @@ public class parqueadero {
     public void ingreso(Carro carro){
         entrada=new Date();
         carro.setEntrada(entrada);
-        if(s1.getLibres()>=s2.getLibres()&&s1.getLibres()>=s3.getLibres()&&s1.getLibres()!=0){
-            carro.setPosicion(5-s1.getLibres());
-            Carro[] nuevo=s1.getCarros();
-            nuevo[5-s1.getLibres()]=carro;
-            s1.setCarros(nuevo);
-            t=8;
-        }
-        else if(s2.getLibres()>=s1.getLibres()&&s2.getLibres()>=s3.getLibres()&&s2.getLibres()!=0){
-            carro.setPosicion(5-s2.getLibres());
-            Carro[] nuevo=s2.getCarros();
-            nuevo[5-s2.getLibres()]=carro;
-            s2.setCarros(nuevo);
-            t=6;
+        seccion zona;
+        if(s1.getLibres()>=s2.getLibres()&&s1.getLibres()>=s3.getLibres()&&s1.getLibres()!=0)zona=s1;
+        else if(s2.getLibres()>=s1.getLibres()&&s2.getLibres()>=s3.getLibres()&&s2.getLibres()!=0)zona=s2;
+            else if(s3.getLibres()>s1.getLibres()&&s3.getLibres()>s2.getLibres()&&s3.getLibres()!=0)zona=s3; 
+            else{
+                System.out.println("No hay parqueaderos libres vulva mas tarde");
+                return;
+            } 
+        
+        carro.setPosicion(5-zona.getLibres());
+        Carro[] nuevo=zona.getCarros();
+        nuevo[5-zona.getLibres()]=carro;
+        zona.setCarros(nuevo);
 
-        }
-        else if(s3.getLibres()>s1.getLibres()&&s3.getLibres()>s2.getLibres()&&s3.getLibres()!=0){
-            carro.setPosicion(5-s3.getLibres());
-            Carro[] nuevo=s3.getCarros();
-            nuevo[5-s3.getLibres()]=carro;
-            s3.setCarros(nuevo);
-            t=4;
-        }
-        if(s1.getLibres()==0&&s2.getLibres()==0&&s3.getLibres() == 0){
-            System.out.println("No hay parqueaderos libres vulva mas tarde");
-            return;
-        }
-            move(t);
-            girar(3);
-            if(t==8)move(s1.getLibres());
-            if(t==6)move(s2.getLibres());
-            if(t==4)move(s3.getLibres());
-            girar(1);
-            move(1);
-            Thing vehiculo=new Thing(ciudad,robot.getStreet(),robot.getAvenue());
-            vehiculo.getIcon().setLabel(carro.getPlaca());
-            girar(2);
-            move(1);
-            girar(3);
-            if(t==8){
-                move(s1.getLibres());
-                s1.setLibres(s1.getLibres()-1);
-                System.out.println("carro "+carro.getPlaca()+" parqueado en la zona 1");
-            }
-            if(t==6){
-                move(s2.getLibres());
-                s2.setLibres(s2.getLibres()-1);
-                System.out.println("carro "+carro.getPlaca()+" parqueado en la zona 2");
-            }
-            if(t==4){
-                move(s3.getLibres());
-                s3.setLibres(s3.getLibres()-1);
-                System.out.println("carro "+carro.getPlaca()+" parqueado en la zona 3");
-            }
-            girar(1);
-            move(t);
-            girar(2);
+        move(10-zona.getColumna());
+        girar(3);
+        move(zona.getLibres());
+        girar(1);
+        move(1);
+        Thing vehiculo=new Thing(ciudad,robot.getStreet(),robot.getAvenue());
+        vehiculo.getIcon().setLabel(carro.getPlaca());
+        girar(2);
+        move(1);
+        girar(3);
+        move(zona.getLibres());
+        zona.setLibres(zona.getLibres()-1);
+        System.out.println("carro "+carro.getPlaca()+" parqueado en la zona 1");
+        girar(1);
+        move(t);
+        girar(2);
     }
     /**
      * Metodo sacar carros del parqueadero
@@ -258,5 +232,4 @@ public class parqueadero {
     public int getGanancias() {
         return ganancias;
     }
-    
 }
