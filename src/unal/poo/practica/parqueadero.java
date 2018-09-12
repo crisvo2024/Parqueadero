@@ -213,7 +213,7 @@ public class parqueadero {
             girar(2);
             move(1);
             girar(3);
-            move(temp.getColumna()-zona.getColumna()+(4-temp.getLibres()));
+            move(temp.getColumna()-zona.getColumna()+(3-temp.getLibres()));
             girar(3);
             move(i);
             girar(1);
