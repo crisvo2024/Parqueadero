@@ -10,9 +10,7 @@ public class parqueadero {
     private final Robot robot;
     private int t,ganancias;
     //se crean las secciones con la columna y el id
-    private final seccion s1=new seccion(2,1,5);
-    private final seccion s2=new seccion(4,2,5);
-    private final seccion s3=new seccion(6,3,5);
+    private final seccion[] s=new seccion[4];
     private final seccion temp=new seccion(7,4,4);
     private Date entrada;
     private static final int PRECIO=10;
@@ -41,6 +39,9 @@ public class parqueadero {
             pared=new Wall(ciudad,4,i,Direction.SOUTH);
         }
         robot=new Robot(this.ciudad,6, 10, Direction.WEST);
+        s[1]=new seccion(2,1,5);
+        s[2]=new seccion(4,2,5);
+        s[3]=new seccion(6,3,5);
     }
     /**
      * Metodo para hacer girar el robot
@@ -62,19 +63,11 @@ public class parqueadero {
      */
     public void mostrarZona(int z){
         System.out.println("Los carros en la zona "+z+" son los de las placas: ");
-        seccion zona;
-            switch (z){
-                case 1: zona=s1;
-                    break;
-                case 2: zona=s2;
-                    break;
-                case 3: zona=s3;
-                    break;
-                default: {
-                    System.out.println("Zona no valida");
-                    return;
-                }
-            }
+        if(z<1||z>3){
+            System.out.println("Zona invalida");
+            return;
+        }
+        seccion zona=s[z];    
         for (int i = 0; i < 5; i++) {
             if(zona.getCarros()[i]!=null)System.out.println(zona.getCarros()[i].getPlaca());
         }
@@ -87,14 +80,14 @@ public class parqueadero {
         entrada=new Date();
         carro.setEntrada(entrada);
         seccion zona;
-        if(s1.getLibres()>=s2.getLibres()&&s1.getLibres()>=s3.getLibres()&&s1.getLibres()!=0){
-            zona=s1;
+        if(s[1].getLibres()>=s[2].getLibres()&&s[1].getLibres()>=s[3].getLibres()&&s[1].getLibres()!=0){
+            zona=s[1];
         }else {
-            if(s2.getLibres()>=s1.getLibres()&&s2.getLibres()>=s3.getLibres()&&s2.getLibres()!=0){
-                zona=s2;
+            if(s[2].getLibres()>=s[1].getLibres()&&s[2].getLibres()>=s[3].getLibres()&&s[2].getLibres()!=0){
+                zona=s[2];
             }else{
-                if(s3.getLibres()>s1.getLibres()&&s3.getLibres()>s2.getLibres()&&s3.getLibres()!=0){
-                    zona=s3;
+                if(s[3].getLibres()>s[1].getLibres()&&s[3].getLibres()>s[2].getLibres()&&s[3].getLibres()!=0){
+                    zona=s[3];
                 }else{
                     System.out.println("No hay parqueaderos libres vulva mas tarde");
                     return;
@@ -132,19 +125,12 @@ public class parqueadero {
     public void sacar(String placa,int sec){
         Date now=new Date();
         Carro carro=null;
-        seccion zona;
-        switch (sec){
-            case 1: zona=s1;
-                break;
-            case 2: zona=s2;
-                break;
-            case 3: zona=s3;
-                break;
-            default: {
-                System.out.println("Zona no valida");
+        if(sec<0||sec>4){
+            System.out.println("Zona no valida");
                 return;
-            }
         }
+        seccion zona=s[sec];
+        
         for(int i=0;i<5-zona.getLibres();i++){
             if(zona.getCarros()[i].getPlaca().equals(placa)){
                 carro=zona.getCarros()[i];
