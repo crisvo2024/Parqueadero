@@ -89,7 +89,7 @@ public class parqueadero {
                 if(s[3].getLibres()>s[1].getLibres()&&s[3].getLibres()>s[2].getLibres()&&s[3].getLibres()!=0){
                     zona=s[3];
                 }else{
-                    System.out.println("No hay parqueaderos libres vulva mas tarde");
+                    System.out.println("No hay parqueaderos libres vuelva mas tarde");
                     return;
                 }
             }     
