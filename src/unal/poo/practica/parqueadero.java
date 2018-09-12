@@ -250,6 +250,7 @@ public class parqueadero {
             if(i>0)nuevo[5-i]=zona.getCarros()[5-i+1];
             else;
         }
+        zona.setCarros(nuevo);
     }
     /**
      * Metodo que retorna las ganancias actuales del parqueadero
